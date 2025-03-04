@@ -3,8 +3,19 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { DownloadButton } from '@/components/DownloadButton';
 
 export default function ModernAcademicCV() {
+  const handleDownloadCV = () => {
+    const pdfUrl = '/cv.pdf'; // Update this path if your PDF is located elsewhere
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'cv.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-800 font-sans">
       <div className="container max-w-4xl mx-auto px-4 py-12">
@@ -701,13 +712,9 @@ export default function ModernAcademicCV() {
 
         {/* Footer */}
         <footer className="text-center text-sm text-gray-600 mt-12">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white transition-colors">
-            <Download className="h-4 w-4 mr-2" />
-            Download CV as PDF
-          </Button>
+          <DownloadButton />
         </footer>
       </div>
     </div>
   )
 }
-
