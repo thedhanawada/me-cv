@@ -17,7 +17,7 @@ export default function ModernAcademicCV() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans">
+    <div id="cv-content" className="min-h-screen bg-white text-gray-800 font-sans">
       <div className="container max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <header className="mb-12 text-center">
