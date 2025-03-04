@@ -2,25 +2,21 @@
 
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { CVPDFDocument } from './CVPDFDocument';
 
 export function DownloadButton() {
-  const handleDownloadCV = () => {
-    const pdfUrl = '/cv.pdf';
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'cv.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
-    <Button 
-      className="bg-blue-600 hover:bg-blue-700 text-white transition-colors"
-      onClick={handleDownloadCV}
-    >
-      <Download className="h-4 w-4 mr-2" />
-      Download CV as PDF
-    </Button>
+    <PDFDownloadLink document={<CVPDFDocument />} fileName="cv.pdf">
+      {({ loading }) => (
+        <Button 
+          className="bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+          disabled={loading}
+        >
+          <Download className="h-4 w-4 mr-2" />
+          {loading ? 'Generating PDF...' : 'Download CV as PDF'}
+        </Button>
+      )}
+    </PDFDownloadLink>
   );
 }
